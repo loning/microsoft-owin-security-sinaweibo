@@ -199,7 +199,7 @@ namespace Microsoft.Owin.Security.SinaWeibo
 
             if (challenge != null)
             {
-                string requestPrefix = Request.Scheme + "://" + Request.Host;
+                string requestPrefix = Request.Scheme + "://" + AppHost;
                 string currentQueryString = Request.QueryString.Value;
                 string currentUri = string.IsNullOrEmpty(currentQueryString)
                     ? requestPrefix + Request.PathBase + Request.Path
@@ -237,10 +237,18 @@ namespace Microsoft.Owin.Security.SinaWeibo
 
         private string GenerateRedirectUri()
         {
-            string requestPrefix = Request.Scheme + "://" + Request.Host;
+            string requestPrefix = Request.Scheme + "://" + AppHost;
 
             string redirectUri = requestPrefix + RequestPathBase + Options.ReturnEndpointPath; // + "?state=" + Uri.EscapeDataString(Options.StateDataFormat.Protect(state));            
             return redirectUri;
+        }
+
+        private string AppHost
+        {
+            get
+            {
+                return Options.AppHost == null ? Request.Host.ToString() : Options.AppHost;
+            }
         }
     }
 }

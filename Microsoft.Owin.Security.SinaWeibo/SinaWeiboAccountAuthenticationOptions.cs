@@ -65,5 +65,7 @@ namespace Microsoft.Owin.Security.SinaWeibo
         /// http://open.weibo.com/wiki/%E9%AB%98%E7%BA%A7%E6%8E%A5%E5%8F%A3%E7%94%B3%E8%AF%B7
         /// </summary>
         public bool RequireEmail { get; set; }
+
+        public string AppHost { get; set; }
     }
 }
